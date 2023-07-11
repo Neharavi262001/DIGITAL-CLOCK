@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Digital Clock</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h3>DIGITAL CLOCK</h3>
+  <div class="clock">
+    
+    <div class="time" id="time"></div>
+  </div>
+
+  <script>
+    function updateTime() {
+      var currentTime = new Date();
+      var hours = currentTime.getHours();
+      var minutes = currentTime.getMinutes();
+      var seconds = currentTime.getSeconds();
+
+      // Pad the minutes and seconds with leading zeros, if required
+      hours = (hours < 10 ? "0" : "") + hours;
+      minutes = (minutes < 10 ? "0" : "") + minutes;
+      seconds = (seconds < 10 ? "0" : "") + seconds;
+
+      // Choose between "AM" and "PM" as per the time
+      var timeOfDay = hours < 12 ? "AM" : "PM";
+
+      // Convert the hours format to 12-hour if needed
+      hours = hours > 12 ? hours - 12 : hours;
+      hours = hours === 0 ? 12 : hours;
+
+      // Create the final display string
+      var currentTimeString = hours + ":" + minutes + ":" + seconds + " " + timeOfDay;
+
+      // Update the time element in the HTML
+      document.getElementById("time").innerHTML = currentTimeString;
+    }
+
+    // Run the updateTime function every second
+    setInterval(updateTime, 1000);
+  </script>
+</body>
+</html>
+
+
